@@ -63,8 +63,31 @@ DEEPSEEK_API_KEY=your_deepseek_api_key
 
 ### 3. 配置Cookie（爬虫功能需要）
 
-编辑 `cookies.txt`，填入豆瓣Cookie。参考文件内说明。
-
+编辑 `cookies.txt`，填入豆瓣Cookie。
+```plaintext
+# 获取方法：
+# 1. 在浏览器中登录 https://www.douban.com
+# 2. 按 F12 打开开发者工具 → Application → Cookies → https://www.douban.com
+# 3. 复制所有 Cookie，每行写一个 key=value
+#
+# 格式示例（二选一）：
+#
+# 方式一：每行一个 key=value
+# bid=xxxxx
+# ll="118296"
+# dbcl2="123456:abcdef"
+# ck=AbCd
+#
+# 方式二：直接粘贴浏览器中的完整Cookie字符串（分号分隔也行）
+# bid=xxxxx; ll="118296"; dbcl2="123456:abcdef"; ck=AbCd
+#
+# 重要 Cookie 项（必须）：
+#   bid - 浏览器标识
+#   dbcl2 - 登录凭证
+#   ck - 会话密钥
+#
+# 提示：Cookie 有效期通常为数天到数周，过期后需重新获取
+```
 ### 4. 运行
 
 **交互模式：**
@@ -130,12 +153,12 @@ JSON格式，包含：
 ```
 您的喜好: 我喜欢战争题材的深度电影
 
-🔍 正在搜索与"战争题材的深度电影"相关的电影...
-🤖 正在生成推荐...
+正在搜索与"战争题材的深度电影"相关的电影...
+正在生成推荐...
 
-🎬 推荐1：《我们的父辈 Unsere Mütter, unsere Väter》
-📌 推荐理由：因为您喜欢战争题材的深度电影，而本片是罕见的德国视角二战反思作品...
-✨ 核心看点：五线叙事展现战争对人性的摧毁
+推荐1：《我们的父辈 Unsere Mütter, unsere Väter》
+推荐理由：因为您喜欢战争题材的深度电影，而本片是罕见的德国视角二战反思作品...
+核心看点：五线叙事展现战争对人性的摧毁
 ```
 
 ## 已有数据使用
