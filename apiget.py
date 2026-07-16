@@ -33,7 +33,7 @@ class CAgentAPI(object):
 		return apikey
 
 	def CheckAPIKeys(self)->bool:
-		"""从.env中获取APIKEY"""
+		"""检查.env中APIKEY是否存在并添加到字典中"""
 		from pathlib import Path
 		env_path = Path.cwd() / ".env"
 		if not env_path.exists():
@@ -90,7 +90,10 @@ class CAgentAPI(object):
 		load_dotenv()
 
 if __name__ == "__main__":
+	TEST_KEY_1 = "DEEPSEEK_API_KEY"
+	TEST_KEY_2 = "OPENROUTER_API_KEY"
 	apiMgr = GetAPIMgr()
 	apiMgr.SetAPIEnvironment()
-	print("APIKEYS: ", apiMgr.CheckAPIKeys())
-	print("API get: ", apiMgr.GetAPI("DEEPSEEK_API_KEY"))
+	print("APIKEYS:", apiMgr.CheckAPIKeys())
+	print(f"API of {TEST_KEY_1} is:", apiMgr.GetAPI(TEST_KEY_1))
+	print(f"API of {TEST_KEY_2} is:", apiMgr.GetAPI(TEST_KEY_2))

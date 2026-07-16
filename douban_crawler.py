@@ -138,7 +138,7 @@ def crawl_movie_reviews(movie_id, pages=None):
 						reviews.append(short)
 
 		except Exception as e:
-			print(f'  第 {page + 1} 页解析错误: {e}")
+			print(f"第 {page + 1} 页解析错误: {e}")
 			continue
 
 	print(f'  共爬取到 {len(reviews)} 条影评')
