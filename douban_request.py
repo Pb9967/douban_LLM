@@ -77,7 +77,8 @@ class DoubanRequestManager:
 		for name, value in self.cookies.items():
 			self.session.cookies.set(name, value, domain='.douban.com')
 
-	def _create_session(self):
+	@staticmethod
+	def _create_session():
 		session = requests.Session()
 		retry_strategy = Retry(
 			total=CRAWL_MAX_RETRIES,
@@ -90,7 +91,8 @@ class DoubanRequestManager:
 		session.mount("https://", adapter)
 		return session
 
-	def _get_random_headers(self):
+	@staticmethod
+	def _get_random_headers():
 		headers = dict(COMMON_HEADERS)
 		headers['User-Agent'] = random.choice(USER_AGENT_POOL)
 		return headers
@@ -107,7 +109,7 @@ class DoubanRequestManager:
 		actual_delay = max(1.0, delay + jitter)
 		time.sleep(actual_delay)
 
-	def _handle_rate_limit(self, response, url):
+	def _handle_rate_limit(self, response, url) -> bool:
 		if response.status_code in (403, 418):
 			self._403_count += 1
 			cooldown = min(COOLDOWN_BASE * (2 ** (self._403_count - 1)), COOLDOWN_MAX)
